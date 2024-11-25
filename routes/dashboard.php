@@ -13,6 +13,7 @@ Route::group([
     ################# Auth ##############################
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('login', [AuthController::class, 'login'])->name('login.post');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
     ################# Protected Routed  ##############################
     Route::group(['middleware' => 'auth:admin'], function () {
