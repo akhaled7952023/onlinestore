@@ -172,10 +172,21 @@ return [
     |
     */
 
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'g-recaptcha-response'=>[
+            'required' => 'you should first check you are not a robot',
+        ],
+        'email'=>[
+            'required' => 'email is required',
+        ],
+        'password'=>[
+            'required' => 'password is required',
+        ],
+
     ],
 
     /*

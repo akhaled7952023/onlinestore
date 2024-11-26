@@ -129,7 +129,14 @@ return [
         ],
         'g-recaptcha-response'=>[
             'required' => 'يجب عليك التحقق من أنك لست روبوت',
-        ]
+        ],
+        'email'=>[
+            'required' => 'الإيميل مطلوب',
+        ],
+        'password'=>[
+            'required' => 'الباسورد مطلوب',
+        ],
+
     ],
 
     /*
