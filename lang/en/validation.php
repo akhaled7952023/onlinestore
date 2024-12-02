@@ -186,6 +186,10 @@ return [
         'password'=>[
             'required' => 'password is required',
         ],
+        'code'=>[
+            'required' => 'otp is required',
+            'min' => 'Otp must have 5 numbers at least',
+        ],
 
     ],
 

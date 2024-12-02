@@ -27,5 +27,15 @@ return [
     'not_match'=>'Crediensials dose not match',
     'enter_your_email'=>'Your Email',
     'enter_your_password'=>'Your PassWord',
+    'send link' => 'We will send you a link to reset password.',
+    'Recover_Password' => 'Recover Password',
+    'not_have_account' => 'you not have account',
+    'create_account' => 'Create Account',
+    'email_not_registered' => 'This email is not registered.',
+    'send'=>'send',
+    'send_otp' => 'We will send code to reset password.',
+    'enter_code' => 'Enter Code Here',
+    'code_invalid' => 'Code Is Invalid',
+
 
 ];
