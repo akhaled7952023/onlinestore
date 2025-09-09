@@ -255,6 +255,7 @@ return [
     'attributes' => [
         'role.en'=>'Role Name With English',
         'role.ar'=>'Role Name With Arbic',
+        'permessions' => 'permessions',
     ],
 
 ];

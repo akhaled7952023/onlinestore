@@ -19,6 +19,8 @@ rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{asset('asset/dashboard')}}/vendors/css/charts/chartist.css">
 <link rel="stylesheet" type="text/css" href="{{asset('asset/dashboard')}}/vendors/css/charts/chartist-plugin-tooltip.css">
 <link rel="stylesheet" type="text/css" href="{{asset('asset/dashboard')}}/fonts/simple-line-icons/style.css">
+<link rel="stylesheet" href="{{ asset('vendor/flasher/flasher.min.css') }}">
+
 
 @if (Config::get('app.locale') =='ar')
   <!-- BEGIN VENDOR CSS-->

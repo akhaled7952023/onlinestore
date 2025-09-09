@@ -26,6 +26,7 @@ class AuthController extends Controller implements HasMiddleware
 
     public function showLoginForm()
     {
+
         return view('dashboard.auth.login');
     }
 

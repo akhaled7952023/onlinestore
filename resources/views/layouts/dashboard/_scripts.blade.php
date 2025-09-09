@@ -14,6 +14,8 @@ type="text/javascript"></script>
 <script src="{{asset('asset/dashboard')}}/js/core/app.js" type="text/javascript"></script>
 <script src="{{asset('asset/dashboard')}}/js/scripts/customizer.js" type="text/javascript"></script>
 <!-- END MODERN JS-->
+<script src="{{ asset('vendor/flasher/flasher.min.js') }}"></script>
+
 <!-- BEGIN PAGE LEVEL JS-->
 <script src="{{asset('asset/dashboard')}}/js/scripts/pages/dashboard-ecommerce.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS-->
