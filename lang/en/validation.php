@@ -191,6 +191,35 @@ return [
             'min' => 'Otp must have 5 numbers at least',
         ],
 
+        'name' => [
+            'required' => 'Name is required',
+            'string'   => 'Name must be text only',
+            'max'      => 'Name must not exceed :max characters',
+        ],
+
+        'email' => [
+            'required' => 'Email is required',
+            'email'    => 'Please enter a valid email address',
+            'unique'   => 'This email is already registered',
+        ],
+
+        'password' => [
+            'required' => 'Password is required',
+            'string'   => 'Password must be text',
+            'min'      => 'Password must be at least :min characters',
+            'confirmed'=> 'Password confirmation does not match',
+            'regex'     => 'Password must contain at least one letter and one symbol (@$!%*#?&)',
+        ],
+            'password_confirmation' => [
+        'required_with' => 'Password confirmation is required when password is present',
+        'same'          => 'Password confirmation must match the password',
+    ],
+
+        'type' => [
+            'required' => 'Role selection is required',
+            'exists'   => 'The selected role is invalid',
+        ],
+
     ],
 
     /*
@@ -255,6 +284,7 @@ return [
     'attributes' => [
         'role.en'=>'Role Name With English',
         'role.ar'=>'Role Name With Arbic',
+        'permessions' => 'permessions',
     ],
 
 ];

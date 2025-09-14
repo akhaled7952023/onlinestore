@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html class="loading" lang="{{ app()->getLocale() }}" data-textdirection="ltr">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
 <head>
  @include('layouts.dashboard._head')
 </head>
