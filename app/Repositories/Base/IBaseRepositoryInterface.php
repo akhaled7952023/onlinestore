@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Repository\Base;
+namespace App\Repositories\Base;
 
 interface IBaseRepositoryInterface
 {

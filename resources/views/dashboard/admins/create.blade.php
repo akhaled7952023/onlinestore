@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.app')
 @section('title')
-    Create Role
+    Create New Admin
 @endsection
 @section('content')
     <div class="app-content content">
@@ -10,9 +10,12 @@
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('dashboard.welcome')}}">{{__('dashboard.dashboard')}}</a></li>
-                                <li class="breadcrumb-item"><a href="{{route('dashboard.roles.index')}}">{{__('dashboard.roles')}}</a></li>
-                                <li class="breadcrumb-item active">{{__('dashboard.create_role')}}</li>
+                                <li class="breadcrumb-item"><a
+                                        href="{{ route('dashboard.welcome') }}">{{ __('dashboard.dashboard') }}</a></li>
+                                <li class="breadcrumb-item"><a
+                                        href="{{ route('dashboard.admins.index') }}">{{ __('dashboard.manage_users') }}</a>
+                                </li>
+                                <li class="breadcrumb-item active">{{ __('dashboard.create_role') }}</li>
                             </ol>
                         </div>
                     </div>
@@ -22,7 +25,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title" id="basic-layout-colored-form-control">{{__('dashboard.create_role')}}</h4>
+                        <h4 class="card-title" id="basic-layout-colored-form-control">{{ __('dashboard.add_admin') }}</h4>
                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
 
                         <div class="heading-elements">
@@ -37,58 +40,60 @@
                     <div class="card-content collapse show">
                         <div class="card-body">
                             @include('dashboard.includes.validations-errors')
-                            <form class="form" action="{{route('dashboard.roles.store')}}" method="POST">
+                            <form class="form" action="{{ route('dashboard.admins.store') }}" method="POST">
                                 @csrf
                                 <div class="form-body">
-                                    <h4 class="form-section"><i class="la la-new"></i>{{__('dashboard.create_new_role')}}</h4>
+                                    <h4 class="form-section"><i class="la la-new"></i>{{ __('dashboard.add_admin') }}</h4>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="userinput1">{{__('dashboard.role_name_en')}}</label>
+                                                <label for="userinput1">{{ __('dashboard.name') }}</label>
                                                 <input type="text" id="userinput1" class="form-control border-primary"
-                                                name="role[en]"  placeholder="{{__('dashboard.permission_name')}}">
+                                                    name="name" value="{{ old('name') }}" placeholder="{{ __('dashboard.name') }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="userinput1">{{__('dashboard.role_name_ar')}}</label>
+                                                <label for="userinput1">{{ __('dashboard.email') }}</label>
                                                 <input type="text" id="userinput1" class="form-control border-primary"
-                                                name="role[ar]"   placeholder="{{__('dashboard.permission_name')}}">
+                                                    name="email" value="{{ old('email') }}" placeholder="{{ __('dashboard.email') }}">
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="row">
-                                        @if (Config::get('app.locale') == 'ar')
-                                            @foreach (config('permessions_ar') as $key => $value)
-                                                <div class="col-md-2">
-                                                    <input value="{{ $key }}" type="checkbox" name="permessions[]"
-                                                        class="checkbox">
-                                                    <lable>{{ $value }}</lable>
-                                                </div>
-                                            @endforeach
-                                        @else
-                                            @foreach (config('permessions_en') as $key => $value)
-                                                <div class="col-md-2">
-                                                    <input value="{{ $key }}" type="checkbox" name="permessions[]"
-                                                        class="checkbox">
-                                                    <lable>{{ $value }}</lable>
-                                                </div>
-                                            @endforeach
-                                        @endif
-
-
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="userinput1">{{ __('dashboard.password') }}</label>
+                                                <input type="text" id="userinput1" class="form-control border-primary"
+                                                    name="password" placeholder="{{ __('dashboard.password') }}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="type">{{ __('dashboard.role_name') }}</label>
+                                                <select id="type" name="type" class="form-control border-primary">
+                                                    <option value="">{{ __('dashboard.choose_role') }}</option>
+                                                    @foreach ($roles as $role)
+                                                        <option value="{{ $role->id }}">
+                                                            {{ app()->getLocale() === 'ar' ? $role->name_ar : $role->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
 
 
                                     </div>
 
-                                    </div>
+                                </div>
 
                                 <div class="form-actions right">
                                     {{-- <button type="button" class="btn btn-warning mr-1">
                                         <i class="ft-x"></i> Cancel
                                     </button> --}}
                                     <button type="submit" class="btn btn-primary">
-                                        <i class="la la-check-square-o"></i> {{__('dashboard.save')}}
+                                        <i class="la la-check-square-o"></i> {{ __('dashboard.save') }}
                                     </button>
                                 </div>
                             </form>

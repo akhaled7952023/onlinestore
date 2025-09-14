@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Repository\Base;
+namespace App\Repositories\Base;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class BaseRepository implements IBaseRepositoryInterface
@@ -21,7 +20,7 @@ class BaseRepository implements IBaseRepositoryInterface
 
     public function find($id)
     {
-        return $this->model->find($id);
+        return $this->model->findOrFail($id);
     }
 
     public function create(array $attributes)

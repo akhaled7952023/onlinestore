@@ -11,10 +11,10 @@
             </li>
           </ul>
         </li>
-
+        @can('view-admin')
         <li class=" nav-item"><a href="{{route('dashboard.admins.index')}}"><i class="la la-users"></i><span class="menu-title" data-i18n="nav.templates.main">{{__('dashboard.manage_users')}}</span></a>
-
-          </li>
+        </li>
+        @endcan
 
         <li class=" navigation-header">
           <span data-i18n="nav.category.layouts">Layouts</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"

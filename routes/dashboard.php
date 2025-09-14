@@ -40,11 +40,13 @@ Route::group(
 
         ################# Protected Routed  ##############################
         Route::group(['middleware' => 'auth:admin'], function () {
-        ####################################### Welcome Routes #######################################
-        Route::get('welcome', [WelcomeController::class, 'index'])->name('welcome');
+            ####################################### Welcome Routes #######################################
+            Route::get('welcome', [WelcomeController::class, 'index'])->name('welcome');
 
-        ####################################### Welcome Routes #######################################
-         Route::resource('admins', ManageAdminsController::class);
+            ####################################### Welcome Routes #######################################
+            Route::resource('admins', ManageAdminsController::class);
+            Route::get('profile', [ManageAdminsController::class, 'profile'])->name('admins.profile');
+            Route::patch('profile', [ManageAdminsController::class, 'updateProfile'])->name('admins.profile.update');
         });
     },
 );

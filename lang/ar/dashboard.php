@@ -6,6 +6,12 @@ return [
     'manage_users' => 'إدارة المستخدمين',
     'admin_name'=>'اسم المدير',
     'add_admin' => 'اضافة أدمن جديد',
+    'name'=>'الاسم',
+    'email'=>'الايميل',
+    'edit_profile'=>'تعديل الملف الشخصي',
+    'password'=>'كلمة المرور',
+    'choose_role'=>'اختر الصلاحية',
+    'admin_email'=>'ايميل المدير',
     'create_role'=>'اضافة صلاحية',
     'edit_role'=>'تعديل صلاحية',
     'delete_role'=>'حذف صلاحية',
@@ -25,5 +31,8 @@ return [
     'operations' => 'العمليات',
     'edit'=>'تعديل',
     'delete'=>'حذف',
+    'change_password'=>'تغيير كلمة المرور',
+    'confirm_password'=>'تأكيد كلمة المرور',
+    'cancel_password_change'=>'إلغاء تغيير كلمة المرور',
 
 ];

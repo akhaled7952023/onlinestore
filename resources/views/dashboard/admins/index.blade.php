@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.app')
 @section('title')
-    Roles
+    Admins
 @endsection
 @section('content')
     <div class="app-content content">
@@ -49,6 +49,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">{{ __('dashboard.admin_name') }} </th>
                                         <th scope="col">{{ __('dashboard.role_name') }}</th>
+                                        <th scope="col">{{ __('dashboard.admin_email') }}</th>
                                         <th scope="col">{{ __('dashboard.operations') }} </th>
                                     </tr>
                                 </thead>
@@ -58,6 +59,7 @@
     <tr>
         <th scope="row">{{ $loop->iteration }}</th>
         <td>{{ $admin->name }}</td>
+
         <td>
             @if (config('app.locale') == 'ar')
                 {{ $admin->roles->pluck('name_ar')->join(', ') }}
@@ -65,23 +67,38 @@
                 {{ $admin->roles->pluck('name')->join(', ') }}
             @endif
         </td>
-        <td>
-            <div class="dropdown float-md-left">
-                <button class="btn btn-danger dropdown-toggle px-2" type="button" data-toggle="dropdown">
-                    {{ __('dashboard.operations') }}
-                </button>
-                <div class="dropdown-menu">
+        <td>{{ $admin->email }}</td>
+
+<td>
+    @php
+        $currentAdmin = auth('admin')->user();
+    @endphp
+
+    @if($currentAdmin->hasRole('superadmin') || $currentAdmin->can('update', $admin) || $currentAdmin->can('delete', $admin))
+        <div class="dropdown float-md-left">
+            <button class="btn btn-danger dropdown-toggle px-2" type="button" data-toggle="dropdown">
+                {{ __('dashboard.operations') }}
+            </button>
+            <div class="dropdown-menu">
+
+                @if($currentAdmin->hasRole('superadmin') || $currentAdmin->can('update', $admin))
                     <a class="dropdown-item" href="{{ route('dashboard.admins.edit', $admin->id) }}">
                         <i class="la la-edit"></i>{{ __('dashboard.edit') }}
                     </a>
+                @endif
+
+                @if($currentAdmin->hasRole('superadmin') || $currentAdmin->can('delete', $admin))
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="javascript:void(0)"
                        onclick="if(confirm('Are you sure you want to delete this user?')){document.getElementById('delete-form-{{ $admin->id }}').submit();} return false">
                         <i class="la la-trash"></i> {{ __('dashboard.delete') }}
                     </a>
-                </div>
+                @endif
+
             </div>
-        </td>
+        </div>
+    @endif
+</td>
     </tr>
 
     <form id="delete-form-{{ $admin->id }}" action="{{ route('dashboard.admins.destroy', $admin->id) }}" method="post">

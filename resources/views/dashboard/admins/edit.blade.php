@@ -7,17 +7,15 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">Basic Forms</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a
-                                        href="{{ route('dashboard.welcome') }}">{{ __('dashboard.dashboard') }}</a>
+                                        href="{{ route('dashboard.welcome') }}">{{ __('dashboard.dashboard') }}</a></li>
+                                <li class="breadcrumb-item"><a
+                                        href="{{ route('dashboard.admins.index') }}">{{ __('dashboard.manage_users') }}</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{ route('dashboard.roles.index') }}">Roles</a>
-                                </li>
-                                <li class="breadcrumb-item active"><a href="#">Edit Role</a>
-                                </li>
+                                <li class="breadcrumb-item active">{{ __('dashboard.edit_role') }}</li>
                             </ol>
                         </div>
                     </div>
@@ -27,7 +25,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title" id="basic-layout-colored-form-control">Create Role</h4>
+                        <h4 class="card-title" id="basic-layout-colored-form-control">{{ __('dashboard.edit_role') }}</h4>
                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                         <div class="heading-elements">
                             <ul class="list-inline mb-0">
@@ -41,61 +39,56 @@
                     <div class="card-content collapse show">
                         <div class="card-body">
                             @include('dashboard.includes.validations-errors')
-                            <form class="form" action="{{ route('dashboard.roles.update' , $role->id) }}" method="POST">
+                            <form action="{{ route('dashboard.admins.update', $admin->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
+                                <input type="hidden" name="name" value="{{ $admin->name }}">
+                                <input type="hidden" name="email" value="{{ $admin->email }}">
+                                <input type="hidden" name="password" value="{{ $admin->password }}">
+
                                 <div class="form-body">
+                                    <h4 class="form-section"><i class="la la-new"></i>{{ __('dashboard.edit_role') }}
+                                    </h4>
 
-                                    <input  name="id"  hidden value="{{$role->id}}">
-                                    <h4 class="form-section"><i class="la la-new"></i>Create New Role</h4>
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <div class="form-group">
-                                                <label for="userinput1">Role English</label>
-                                                <input type="text" id="userinput1" class="form-control border-primary"
-                                                value="{{$role->getTranslation('role' , 'en')}}"    placeholder="Name" name="role[en]">
+                                                <label>{{ __('dashboard.name') }}</label>
+                                                <p class="form-control border-light bg-light">{{ $admin->name }}</p>
                                             </div>
+                                        </div>
 
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>{{ __('dashboard.email') }}</label>
+                                                <p class="form-control border-light bg-light">{{ $admin->email }}</p>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="userinput1"> Role Arabic</label>
-                                                <input type="text" id="userinput1" class="form-control border-primary"
-                                                   value="{{$role->getTranslation('role' , 'ar')}}"  placeholder="Name" name="role[ar]">
+                                                <label for="type">{{ __('dashboard.role_name') }}</label>
+                                                <select id="type" name="type" class="form-control border-primary">
+                                                    <option value="">{{ __('dashboard.choose_role') }}</option>
+                                                    @foreach ($roles as $role)
+                                                        <option value="{{ $role->id }}"
+                                                            {{ $admin->type == $role->id ? 'selected' : '' }}>
+                                                            {{ app()->getLocale() === 'ar' ? $role->name_ar : $role->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
-
                                         </div>
-
-                                    </div>
-                                    <div class="row">
-                                        @if (Config::get('app.locale') == 'ar')
-                                            @foreach (config('permessions_ar') as $key => $value)
-                                                <div class="col-md-2">
-                                                    <input value="{{ $key }}" type="checkbox" name="permessions[]"
-                                                        class="checkbox"  @checked(in_array($key, $role->permession))>
-                                                    <lable>{{ $value }}</lable>
-                                                </div>
-                                            @endforeach
-                                        @else
-                                            @foreach (config('permessions_en') as $key => $value)
-                                                <div class="col-md-2">
-                                                    <input value="{{ $key }}" type="checkbox" name="permessions[]"
-                                                        class="checkbox"  @checked(in_array($key, $role->permession))>
-                                                    <lable>{{ $value }}</lable>
-                                                </div>
-                                            @endforeach
-                                        @endif
                                     </div>
                                 </div>
+
                                 <div class="form-actions right">
-                                    <button type="button" class="btn btn-warning mr-1">
-                                        <i class="ft-x"></i> Cancel
-                                    </button>
                                     <button type="submit" class="btn btn-primary">
-                                        <i class="la la-check-square-o"></i> Save
+                                        {{ __('dashboard.save') }}
                                     </button>
                                 </div>
                             </form>
+
+
                         </div>
                     </div>
                 </div>
