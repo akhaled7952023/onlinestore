@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->foreignId('governrate_id')->constrained('governrates')->cascadeOnDelete();
-            $table->timestamps();
+            $table->boolean('is_active')->default(true);
+            $table->foreignId('governorate_id')->constrained('governrates')->cascadeOnDelete();
+
         });
     }
 

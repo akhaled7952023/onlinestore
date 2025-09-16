@@ -11,6 +11,7 @@
 rel="stylesheet">
 <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
 rel="stylesheet">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- BEGIN VENDOR CSS-->
 
 <link rel="stylesheet" type="text/css" href="{{asset('asset/dashboard')}}/vendors/css/weather-icons/climacons.min.css">

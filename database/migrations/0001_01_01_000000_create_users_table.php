@@ -14,10 +14,15 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('mobile')->unique();
-            $table->timestamp('mobile_verified_at')->nullable();
-            $table->string('mobile_verification_code')->nullable();
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
             $table->boolean('status')->default(1);
             $table->string('password');
+
+            $table->foreignId('country_id')->constrained('countries')->cascadeOnDelete();
+            $table->foreignId('governorate_id')->constrained('governrates')->cascadeOnDelete();
+            $table->foreignId('city_id')->constrained('cities')->cascadeOnDelete();
+
             $table->rememberToken();
             $table->timestamps();
         });

@@ -19,3 +19,5 @@ type="text/javascript"></script>
 <!-- BEGIN PAGE LEVEL JS-->
 <script src="{{asset('asset/dashboard')}}/js/scripts/pages/dashboard-ecommerce.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS-->
+@stack('js')
+

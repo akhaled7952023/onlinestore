@@ -23,10 +23,11 @@ class DatabaseSeeder extends Seeder
             AdminRoleSeeder::class,
             AdminSeeder::class,
             ManageAdminPermissionSeeder::class,
-
-            // CountrySeeder::class,
-            // GovernorateSeeder::class,
-            // CitySeeder::class,
+            ManageShippingPermissionSeeder::class,
+            CountrySeeder::class,
+            GovernrateSeeder::class,
+            CitySeeder::class,
+            ShippingGovernorateSeeder::class,
 
         ]);
 
