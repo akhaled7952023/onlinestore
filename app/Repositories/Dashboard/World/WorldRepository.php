@@ -7,63 +7,84 @@ use App\Models\Governrate;
 
 class WorldRepository  implements IWorldRepository
 {
-
     public function getCountryById($id)
     {
-        $country = Country::find($id);
-        return $country;
+        return Country::find($id);
     }
+
     public function getGovernorateById($id)
     {
-        $governorate = Governrate::find($id);
-        return $governorate;
+        return Governrate::find($id);
     }
+
     public function getAllCountries()
     {
-        $countries = Country::when(!empty(request()->keyword),function($query){
-              $query->where('name', 'like', '%'.request()->keyword.'%');
-        })->select('id', 'name', 'phone_code' , 'is_active' , 'flag_code')->paginate(5);
-
-        return $countries;
+        //Eagr Loading
+        $country =  Country::withCount(['governorates', 'users'])
+            ->when(!empty(request()->keyword), function ($query) {
+                $query->where('name', 'like', '%' . request()->keyword . '%');
+            })
+            ->paginate(5);
+            return $country;
     }
+
     public function getAllgovernorates($country)
     {
-        $governorates = $country->governorates()->paginate(10);
-        return $governorates;
+        $governorate =  $country->governorates()
+            ->with(['country'])
+            ->withCount(['cities', 'users'])
+            ->paginate(10);
+
+        return $governorate;
     }
+
     public function getAllGovernoratesInSystem()
-{
-    return Governrate::paginate(10);
-}
+    {
+        $governorate = Governrate::with(['country', ])
+            ->withCount(['cities', 'users'])
+            ->paginate(10);
+
+        return $governorate;
+    }
 
     public function getAllCities($governorate)
     {
-         return $governorate->cities()->paginate(10);
+        return $governorate->cities()
+            ->with(['governorate', 'shippingPrice'])
+            ->withCount(['users'])
+            ->paginate(10);
     }
+
     public function getAllCitiesInSystem()
-{
-    return City::paginate(10);
-}
+    {
+        $city =  City::with(['governorate', 'shippingPrice'])
+            ->withCount(['users'])
+            ->paginate(10);
+        return $city;
+    }
 
     public function getCityById($cityId)
-{
-    return City::find($cityId);
-}
+    {
+        return City::with(['governorate', 'shippingPrice'])
+            ->withCount(['users'])
+            ->find($cityId);
+    }
+
     public function getActiveGovernorateCities()
     {
-        return City::whereHas('governorate', function ($query) {
-            $query->where('is_active', 1);
-        })->get();
+        return City::with(['governorate', 'shippingPrice'])
+            ->withCount(['users'])
+            ->whereHas('governorate', function ($query) {
+                $query->where('is_active', 1);
+            })
+            ->get();
     }
 
     public function changeStatus($model)
     {
-        $model = $model->update([
+        return $model->update([
             'is_active' => $model->is_active == 'Active' || $model->is_active == 'مفعل' ? 0 : 1,
         ]);
-
-        return $model;
-
     }
 
     public function changeShippingPrice($governorate , $price)
@@ -76,7 +97,8 @@ class WorldRepository  implements IWorldRepository
     public function searchCities($keyword)
     {
         return City::with(['governorate', 'shippingPrice'])
-                   ->where('name', 'like', "%{$keyword}%")
-                   ->get() ;
+            ->withCount(['users'])
+            ->where('name', 'like', "%{$keyword}%")
+            ->get();
     }
 }

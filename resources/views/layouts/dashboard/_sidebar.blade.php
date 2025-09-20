@@ -21,6 +21,17 @@
         </li>
         @endcan
 
+        @can('categories')
+        <li class=" nav-item"><a href="{{route('dashboard.categories.index')}}"><i class="la la-list"></i><span class="menu-title" data-i18n="nav.templates.main">{{__('dashboard.categories')}}</span></a>
+        </li>
+        @endcan
+
+
+        @can('brands')
+        <li class=" nav-item"><a href="{{route('dashboard.brands.index')}}"><i class="la la-star"></i><span class="menu-title" data-i18n="nav.templates.main">{{__('dashboard.brands')}}</span></a>
+        </li>
+        @endcan
+
         <li class=" navigation-header">
           <span data-i18n="nav.category.layouts">Layouts</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
           data-placement="right" data-original-title="Layouts"></i>

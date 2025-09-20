@@ -220,6 +220,13 @@ return [
             'exists'   => 'The selected role is invalid',
         ],
 
+        'logo' => [
+            'required' => 'Logo is required',
+            'image'    => 'Logo must be an image',
+            'mimes'    => 'Logo must be a file of type: :values',
+            'max'      => 'Logo must not be greater than :max kilobytes',
+        ],
+
     ],
 
     /*
@@ -285,6 +292,9 @@ return [
         'role.en'=>'Role Name With English',
         'role.ar'=>'Role Name With Arbic',
         'permessions' => 'permessions',
+        'name.en'=>'Name In English',
+        'name.ar'=>'Name In Arabic',
+
     ],
 
 ];

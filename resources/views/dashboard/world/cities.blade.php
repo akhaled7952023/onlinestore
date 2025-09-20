@@ -61,6 +61,7 @@
                             <div id="table_live">
                                 <div id="cities-table-wrapper">
     @include('dashboard.world.partials.cities_table', ['cities' => $cities])
+
 </div>
 
 
@@ -81,6 +82,9 @@
 
     <script src="{{ asset('asset/dashboard') }}/js/scripts/tables/components/table-components.js" type="text/javascript">
     </script>
+
+
+       {{-- // live search --}}
 
 
     {{-- change status --}}
@@ -147,6 +151,7 @@
                         $('#price_' + response.data.id).empty();
                         $('#price_' + response.data.id).text(response.data.shipping_price.price);
 
+
                     }
 
                 },
@@ -161,8 +166,8 @@
         });
     </script>
 
-    {{-- // live search --}}
-    <script>
+
+        <script>
    $(document).on('keyup', '#city-search', function() {
     let keyword = $(this).val();
 
@@ -172,9 +177,12 @@
         data: { keyword: keyword },
         success: function(response) {
             $('#cities-table-wrapper').html(response);
+            $('input.switch').checkboxpicker();
+
         }
     });
 });
 
 </script>
+
 @endpush

@@ -78,11 +78,11 @@
                                                 </td>
                                                 <td>
                                                     <div class="badge badge-pill badge-border border-success success">
-                                                        {{ $country->governorates->count() }}</div>
+                                                        {{ $country->governorates_count }}</div>
                                                 </td>
                                                 <td>
                                                     <div  class="badge badge-pill badge-border border-primary success lg">
-                                                        {{ $country->users->count()}}
+                                                        {{ $country->users_count}}
                                                     </div>
                                                 </td>
 

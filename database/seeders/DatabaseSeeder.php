@@ -28,7 +28,10 @@ class DatabaseSeeder extends Seeder
             GovernrateSeeder::class,
             CitySeeder::class,
             ShippingGovernorateSeeder::class,
-
+            ManageCategoriesPermissionSeeder::class,
+            ManageBrandsPermissionSeeder::class,
+            BrandSeeder::class,
+            CategorySeeder::class,
         ]);
 
     }
