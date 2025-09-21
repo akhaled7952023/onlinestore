@@ -294,6 +294,15 @@ return [
         'permessions' => 'permessions',
         'name.en'=>'Name In English',
         'name.ar'=>'Name In Arabic',
+           'code'           => 'Coupon Code',
+        'discount_value' => 'Discount Value',
+        'discount_type'  => 'Discount Type',
+        'start_date'     => 'Start Date',
+        'end_date'       => 'End Date',
+        'limit'          => 'Usage Limit',
+        'is_active'      => 'Status',
+        'min_cart_value' => 'Minimum Cart Value',
+        'code_coupon' => 'Coupon Code',
 
     ],
 

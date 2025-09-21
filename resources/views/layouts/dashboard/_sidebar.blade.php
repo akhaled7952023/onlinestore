@@ -32,6 +32,11 @@
         </li>
         @endcan
 
+        @can('coupons')
+        <li class=" nav-item"><a href="{{route('dashboard.coupons.index')}}"><i class="la la-tag"></i><span class="menu-title" data-i18n="nav.templates.main">{{__('dashboard.coupons')}}</span></a>
+        </li>
+        @endcan
+
         <li class=" navigation-header">
           <span data-i18n="nav.category.layouts">Layouts</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip"
           data-placement="right" data-original-title="Layouts"></i>

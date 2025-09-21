@@ -32,7 +32,8 @@ class DatabaseSeeder extends Seeder
             ManageBrandsPermissionSeeder::class,
             BrandSeeder::class,
             CategorySeeder::class,
+            CouponSeeder::class,
+            ManageCouponsPermissionSeeder::class,
         ]);
-
     }
 }
